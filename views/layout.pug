@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(name='viewport' content='width=device-width, initial-scale=1' charset='utf-8')
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css')
+  body
+    nav.navbar.navbar-inverse
+        .container-fluid
+        .navbar-header
+            a.navbar-brand(href='http://localhost:3000/home') NodeJS project
+        ul.nav.navbar-nav
+            li.active
+                a(href='http://localhost:3000/home') Home
+            li
+                a(href='#') Page 1
+            li
+                a(href='#') Page 2
+        ul.nav.navbar-nav.navbar-right
+            li
+                a(href='/users/register')
+                    span.glyphicon.glyphicon-user
+                    |  User   |
+            li
+                a(href='/users/login')
+                    span.glyphicon.glyphicon-log-in
+                    |  Login
+                    
+    block content
+
+

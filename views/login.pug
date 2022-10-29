@@ -1,0 +1,53 @@
+doctype html
+head
+	title Login
+	link(rel='preconnect' href='https://fonts.gstatic.com')
+	link(rel='stylesheet' href='/stylesheets/login.css')
+	link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css')
+	link(href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap' rel='stylesheet')
+body
+	.background
+		.shape
+		.shape
+		form#login(method='post')
+			h3 Login
+			label(for='name') Username
+			input#name(name='name' type='text' placeholder='Email or Phone')
+			label(for='password') Password
+			input#password(name='password' type='password' placeholder='Password')
+			button(type='submit' for='Login') Login     
+			.social
+			.go
+				i.fab.fa-google
+					|   Google
+			.fb
+				i.fab.fa-facebook
+					|   Facebook
+script.
+	const form = document.getElementById('login') 
+	form.addEventListener('submit', login)    
+	async function login(event){
+		event.preventDefault()
+		const name = document.getElementById('name').value
+		const password = document.getElementById('password').value
+		const result = await fetch('/users/login',{
+			method:'POST',
+			headers:{
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				name,
+				password
+			})
+			}).then((res) => res.json())
+		if (result.status === 'ok'){
+			//- console.log('Got the token: ', result.data)
+			//- localStorage.setItem('token', result.data)
+			//- alert('Success')
+			window.location.href = "http://localhost:3000/home";
+		}else {
+			alert(result.error)
+		}
+	}
+//- script 
+//- 	include ../public/javascripts/scriptLogin.js
